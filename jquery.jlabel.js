@@ -3,7 +3,7 @@
 // ####### Plugin:      jLabel                                                  #######
 // ####### Author:      William Duffy                                           #######
 // ####### Website:     http://www.wduffy.co.uk/jLabel                          #######
-// ####### Version:     1.1                                                     #######
+// ####### Version:     1.2                                                     #######
 // #######                                                                      #######
 // ####### Copyright (c) 2010, William Duffy - www.wduffy.co.uk                 #######
 // #######                                                                      #######
@@ -141,12 +141,13 @@
         };
 
         // Private: Toggle label opacity on input key up
-        function keyup($input) {			
+        function keyup($input) {
+			var $label = getState($input).label;
+			
 			if ($input.val() == '') {
-            	getState($input).label.stop().fadeTo(opts.speed, opts.opacity);
+            	$label.stop().fadeTo(opts.speed, opts.opacity);
 			} else {
-				//getState($input).label.stop().fadeTo(opts.speed, 0);
-				getState($input).label.css("width", "20").css("overflow", "hidden").css("white-space", "nowrap").animate({textIndent: -100}, 1000);
+				if ($label.is(":visible")) $label.stop().fadeTo(opts.speed, 0, function() { $label.hide(); });
 			};
         };
 
