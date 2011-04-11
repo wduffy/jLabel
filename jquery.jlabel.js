@@ -3,7 +3,7 @@
 // ####### Plugin:      jLabel                                                  #######
 // ####### Author:      William Duffy                                           #######
 // ####### Website:     http://www.wduffy.co.uk/jLabel                          #######
-// ####### Version:     1.2                                                     #######
+// ####### Version:     1.3                                                     #######
 // #######                                                                      #######
 // ####### Copyright (c) 2010, William Duffy - www.wduffy.co.uk                 #######
 // #######                                                                      #######
@@ -61,7 +61,7 @@
             this.label = getLabel($input);                     
             
             // Construction code
-            if (this.input.val() != '') this.label.fadeTo(0, 0);
+            if (this.input.val() != '') this.label.hide();
 
         };
 
