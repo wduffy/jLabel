@@ -31,56 +31,56 @@
 // ####################################################################################
 (function($) {
     
-    // Public: jLabel Plugin
-    $.fn.jLabel = function(options) {
+	// Public: jLabel Plugin
+	$.fn.jLabel = function(options) {
 
-        var states = new Array();
-        var opts = $.extend({}, $.fn.jLabel.defaults, options);
+		var states = new Array();
+		var opts = $.extend({}, $.fn.jLabel.defaults, options);
 
-        return this.each(function() {
-            $this = $(this);
+		return this.each(function() {
+			$this = $(this);
 
-            states.push(new state($this));
+			states.push(new state($this));
 
-            $this
-                .focus(function() { focus($(this)); })
-                .blur(function() { blur($(this)); })
-                .keyup(function() { keyup($(this)); });
-        });
+			$this
+				.focus(function() { focus($(this)); })
+				.blur(function() { blur($(this)); })
+				.keyup(function() { keyup($(this)); });
+		});
 
-        // Private: state object
-        function state($input) {
+		// Private: state object
+		function state($input) {
 
-            // Public Method: equals
-            this.equals = function($input) {
-                return $input.attr('id') == this.input.attr('id');
-            };
+			// Public Method: equals
+			this.equals = function($input) {
+				return $input.attr('id') == this.input.attr('id');
+			};
 
-            // Public Properties
-            this.input = $input;
-            this.label = getLabel($input);                     
+			// Public Properties
+			this.input = $input;
+			this.label = getLabel($input);                     
             
-            // Construction code
-            if (this.input.val() != '') this.label.hide();
+			// Construction code
+			if (this.input.val() != '') this.label.hide();
 
-        };
+		};
 
-        // Private: Get an input's related state
-        function getState($input) {
-            var state; 
+		// Private: Get an input's related state
+		function getState($input) {
+			var state; 
 
-            $.each(states, function() {
-                if (this.equals($input)) {
-                    state = this;
-                    return false; // Stop the jQuery loop running
-                };
-            });
+			$.each(states, function() {
+				if (this.equals($input)) {
+					state = this;
+					return false; // Stop the jQuery loop running
+				};
+			});
 
 			return state;
-        };
+		};
 
-        // Private: Get an input's related label, or create a new one if none found
-        function getLabel($input) {
+		// Private: Get an input's related label, or create a new one if none found
+		function getLabel($input) {
 			
 			// Get the label related to the passed input
 			var $label = $('label[for=' + $input.attr('id') + ']');
@@ -88,8 +88,8 @@
 			// If no label has been found create one
 			if ($label.size() == 0) {
 				$label = $('<label>')
-                                .attr('for', $input.attr('id'))
-                                .text($input.attr('title'));
+								.attr('for', $input.attr('id'))
+								.text($input.attr('title'));
 			};
 			
 			// If this is a new label insert it into the DOM, if not then move it directly before it's related input
@@ -98,67 +98,67 @@
 			// Style the label to mimic it's textbox formatting
 			$label
 				.css({
-					'font-family' 	    : $input.css('font-family'),
-					'font-size' 	    : $input.css('font-size'),
-					'font-style' 	    : $input.css('font-style'),
-					'font-variant' 	    : $input.css('font-variant'),
-					'font-weight' 	    : $input.css('font-weight'),
-                    'letter-spacing' 	: $input.css('letter-spacing'),
-                    'line-height' 	    : $input.css('line-height'),
-                    'text-decoration' 	: $input.css('text-decoration'),
-                    'text-transform' 	: $input.css('text-transform'),
-					'color' 		    : $input.css('color'),
-					'cursor' 		    : $input.css('cursor'),
-					'display' 		    : 'inline-block'
+					'font-family'		: $input.css('font-family'),
+					'font-size'			: $input.css('font-size'),
+					'font-style'		: $input.css('font-style'),
+					'font-variant'		: $input.css('font-variant'),
+					'font-weight'		: $input.css('font-weight'),
+					'letter-spacing'	: $input.css('letter-spacing'),
+					'line-height'		: $input.css('line-height'),
+					'text-decoration'	: $input.css('text-decoration'),
+					'text-transform'	: $input.css('text-transform'),
+					'color'				: $input.css('color'),
+					'cursor'			: $input.css('cursor'),
+					'display'			: 'inline-block'
 				});
 
 			// Stop the label from being selectable and position it relative to it's input
-            $label
+			$label
 					.mousedown(function() { return false; })
 					.css({
-						'position' 		: 'relative',
-						'z-index' 		: '100',
-						'margin-right' 	: -$label.width(),
-						'left' 			: opts.xShift + parseInt($input.css("padding-left")) + 'px',
+						'position'		: 'relative',
+						'z-index'		: '100',
+						'margin-right'	: -$label.width(),
+						'left'			: opts.xShift + parseInt($input.css("padding-left")) + 'px',
 						'top'			: opts.yShift + 'px'
 					});
 
-            return $label;
-        };
+			return $label;
+		};
 
-        // Private: Toggle label opacity on input focus
-        function focus($input) {
-            if ($input.val() == '') {
-                getState($input).label.stop().fadeTo(opts.speed, opts.opacity);
+		// Private: Toggle label opacity on input focus
+		function focus($input) {
+			if ($input.val() == '') {
+				getState($input).label.stop().fadeTo(opts.speed, opts.opacity);
 			};
-        };
+		};
 
-        // Private: Toggle label opacity on input blur
-        function blur($input) {
-            if ($input.val() == '') {
-                getState($input).label.stop().fadeTo(opts.speed, 1);
+		// Private: Toggle label opacity on input blur
+		function blur($input) {
+			if ($input.val() == '') {
+				getState($input).label.stop().fadeTo(opts.speed, 1);
 			};
-        };
+		};
 
-        // Private: Toggle label opacity on input key up
-        function keyup($input) {
+		// Private: Toggle label opacity on input key up
+		function keyup($input) {
 			var $label = getState($input).label;
 			
 			if ($input.val() == '') {
-            	$label.stop().fadeTo(opts.speed, opts.opacity);
+				$label.stop().fadeTo(opts.speed, opts.opacity);
 			} else {
 				if ($label.is(":visible")) $label.stop().fadeTo(opts.speed, 0, function() { $label.hide(); });
 			};
-        };
+		};
 
-    };
+	};
 
-    // Public: Default values
-    $.fn.jLabel.defaults = {
-        speed 	: 200,
-        opacity : 0.4,
-        xShift 	: 2,
-        yShift 	: 0
-    };
+	// Public: Default values
+	$.fn.jLabel.defaults = {
+		speed 	: 200,
+		opacity : 0.4,
+		xShift 	: 2,
+		yShift 	: 0
+	};
 
 })(jQuery);
