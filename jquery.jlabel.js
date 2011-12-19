@@ -45,7 +45,8 @@
 			$this
 				.focus(function() { focus($(this)); })
 				.blur(function() { blur($(this)); })
-				.keyup(function() { keyup($(this)); });
+				.keyup(function() { keyup($(this)); })
+				.onchange(function() { keyup($(this)); });
 		});
 
 		// Private: state object
