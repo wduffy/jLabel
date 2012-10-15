@@ -99,7 +99,7 @@
 			$label
 				.css({
 					'font-family'		: $input.css('font-family'),
-					'font-size'			: $input.css('font-size'),
+					'font-size'		: $input.css('font-size'),
 					'font-style'		: $input.css('font-style'),
 					'font-variant'		: $input.css('font-variant'),
 					'font-weight'		: $input.css('font-weight'),
@@ -107,12 +107,14 @@
 					'line-height'		: $input.css('line-height'),
 					'text-decoration'	: $input.css('text-decoration'),
 					'text-transform'	: $input.css('text-transform'),
-					'color'				: $input.css('color'),
-					'cursor'			: $input.css('cursor'),
-					'display'			: 'inline-block'
+					'color'			: $input.css('color'),
+					'cursor'		: $input.css('cursor'),
+					'width'			: $input.css('width'),
+					'display'		: 'inline-block',
+					'overflow'		: 'hidden'
 				});
 
-			// Stop the label from being selectable and position it relative to it's input
+			// Stop the label from being selectable and position it relative to its input
 			$label
 					.mousedown(function() { return false; })
 					.css({
