@@ -92,7 +92,7 @@
 								.text($input.attr('title'));
 			};
 			
-			// If this is a new label insert it into the DOM, if not then move it directly before it's related input
+			// If this is a new label insert it into the DOM, if not then move it directly before its related input
 			$input.before($label);
 
 			// Style the label to mimic it's textbox formatting
