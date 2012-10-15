@@ -116,14 +116,14 @@
 
 			// Stop the label from being selectable and position it relative to its input
 			$label
-					.mousedown(function() { return false; })
-					.css({
-						'position'		: 'relative',
-						'z-index'		: '100',
-						'margin-right'	: -$label.width(),
-						'left'			: opts.xShift + parseInt($input.css("padding-left")) + 'px',
-						'top'			: opts.yShift + 'px'
-					});
+				.mousedown(function() { return false; })
+				.css({
+					'position'		: 'relative',
+					'z-index'		: '100',
+					'margin-right'	: -$label.width(),
+					'left'			: opts.xShift + parseInt($input.css("padding-left")) + 'px',
+					'top'			: opts.yShift + 'px'
+				});
 
 			return $label;
 		};
