@@ -38,7 +38,7 @@
 		var opts = $.extend({}, $.fn.jLabel.defaults, options);
 
 		return this.each(function() {
-			$this = $(this);
+			var $this = $(this);
 
 			states.push(new state($this));
 
